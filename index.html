@@ -1,0 +1,417 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Gourav Rajhans</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: a shift log. Left rail holds line codes and dates, right column holds the entry. Amber is the only accent. */
+:root{
+  --bg:#13110d; --panel:#1b1813; --line:#2e2a22; --fg:#ece6da; --muted:#a39a88; --amber:#f2a516; --amber-ink:#13110d;
+  --display:"Big Shoulders Display",Impact,"Arial Narrow",sans-serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme: light){ :root:not([data-theme="dark"]){
+  --bg:#f6f2ea; --panel:#fffcf5; --line:#ddd4c3; --fg:#1d1a14; --muted:#6b6352; --amber:#a86a06; --amber-ink:#fffcf5; color-scheme:light } }
+:root[data-theme="light"]{
+  --bg:#f6f2ea; --panel:#fffcf5; --line:#ddd4c3; --fg:#1d1a14; --muted:#6b6352; --amber:#a86a06; --amber-ink:#fffcf5; color-scheme:light }
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.6}
+.wrap{max-width:1000px;margin:0 auto;padding-block:36px 64px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.mono{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+
+.bar{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:12px}
+nav{display:flex;flex-wrap:wrap;gap:6px 18px}
+nav a{color:var(--muted);text-decoration:none}
+nav a:hover,nav a:focus-visible{color:var(--amber)}
+
+.hero{padding-block:52px 36px;display:grid;gap:22px}
+h1{font-family:var(--display);font-weight:900;text-transform:uppercase;line-height:.88;font-size:clamp(60px,13vw,150px);margin:0;letter-spacing:-.01em}
+h1 span{color:var(--amber)}
+.role{font-family:var(--mono);font-size:14px;color:var(--fg);margin:0}
+.lede{max-width:62ch;font-size:18px;margin:0}
+.cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.btn{font:600 14px var(--body);border:1px solid var(--amber);background:var(--amber);color:var(--amber-ink);padding:10px 16px;border-radius:2px;cursor:pointer}
+.btn:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
+#email{font-family:var(--mono);font-size:14px;user-select:all}
+
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));border:1px solid var(--line);background:var(--panel)}
+.kpi{padding:18px 20px;border-right:1px solid var(--line)}
+.kpi:last-child{border-right:0}
+.kpi b{display:block;font-family:var(--display);font-weight:800;font-size:42px;line-height:1;color:var(--amber);font-variant-numeric:tabular-nums}
+.kpi p{margin:8px 0 0;font-size:14px;color:var(--muted)}
+
+section{margin-top:68px;scroll-margin-top:16px}
+.sec-h{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;border-bottom:2px solid var(--fg);padding-bottom:8px;margin-bottom:8px}
+h2{font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:34px;margin:0;line-height:1}
+
+.entry{display:grid;grid-template-columns:150px minmax(0,1fr);gap:6px 28px;padding-block:24px;border-bottom:1px solid var(--line)}
+.entry:last-child{border-bottom:0}
+.code{font-family:var(--mono);font-size:12px;color:var(--muted);line-height:1.5}
+.code em{display:block;font-style:normal;color:var(--amber);font-weight:600;font-size:13px}
+h3{font-weight:600;font-size:20px;margin:0 0 6px;text-wrap:balance}
+.entry p{margin:0 0 10px;max-width:64ch}
+.entry ul{margin:0 0 10px;padding-left:18px;max-width:64ch;display:grid;gap:4px}
+.flow{font-family:var(--mono);font-size:13px;color:var(--muted);margin:8px 0 12px;overflow-wrap:anywhere}
+.flow span{color:var(--fg)}
+.out{font-weight:600}
+.out::before{content:"→ ";color:var(--amber)}
+
+/* findings table for line balance */
+.find{display:grid;grid-template-columns:140px minmax(0,1fr);border-top:1px solid var(--line);margin:6px 0 12px;max-width:64ch}
+.find dt,.find dd{margin:0;padding:8px 0;border-bottom:1px solid var(--line);font-size:15px}
+.find dt{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);padding-top:10px}
+
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.tag{font-family:var(--mono);font-size:11px;border:1px solid var(--line);padding:3px 8px;color:var(--muted);border-radius:2px}
+
+.builds{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:20px}
+.build{background:var(--bg);padding:20px}
+.build h3{font-size:17px}
+.build p{margin:0;color:var(--muted);font-size:15px}
+.status{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--amber);margin-bottom:6px}
+
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:28px;margin-top:20px}
+.skills h4{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--amber);margin:0 0 10px}
+.skills ul{list-style:none;padding:0;margin:0;display:grid;gap:6px;font-size:15px}
+
+footer{margin-top:80px;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-between}
+
+/* conveyor */
+.line-box{border:1px solid var(--line);background:var(--panel);margin-top:4px}
+.line-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 16px;padding:10px 14px;border-bottom:1px solid var(--line)}
+#state{color:var(--fg)}
+#state.down{color:var(--amber)}
+#belt{display:block;width:100%;height:150px;cursor:pointer;touch-action:manipulation}
+
+/* converter demo */
+.demo{border:1px solid var(--line);background:var(--panel);margin:14px 0 12px}
+.demo-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr)}
+.demo-in,.demo-out{padding:14px;min-width:0}
+.demo-in{border-right:1px solid var(--line)}
+.demo label{display:block;margin-bottom:8px}
+#msg{width:100%;min-height:150px;resize:vertical;background:var(--bg);color:var(--fg);border:1px solid var(--line);border-radius:2px;
+  font:13px/1.55 var(--mono);padding:10px}
+#msg:focus-visible{outline:2px solid var(--amber);outline-offset:1px}
+.demo .btn{margin-top:10px;font-size:13px;padding:8px 14px}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13px;min-width:380px}
+th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:400}
+td.n{font-variant-numeric:tabular-nums;font-family:var(--mono)}
+.pareto{display:grid;gap:6px;margin-top:14px}
+.pbar{display:grid;grid-template-columns:96px minmax(0,1fr) 52px;gap:8px;align-items:center;font-size:12px}
+.pbar span:first-child{font-family:var(--mono);color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pbar i{display:block;height:10px;background:var(--amber);transition:width .4s ease}
+.pbar span:last-child{font-family:var(--mono);text-align:right;font-variant-numeric:tabular-nums}
+.empty{color:var(--muted);font-size:14px;margin:0}
+
+/* project filter */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.chip{font:12px var(--mono);text-transform:uppercase;letter-spacing:.05em;background:transparent;color:var(--muted);
+  border:1px solid var(--line);padding:6px 12px;border-radius:2px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.chip:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+.build{transition:opacity .2s}
+.build:hover h3{color:var(--amber)}
+
+@media (max-width:640px){
+  .demo-grid{grid-template-columns:minmax(0,1fr)}
+  .demo-in{border-right:0;border-bottom:1px solid var(--line)}
+  .entry{grid-template-columns:minmax(0,1fr)}
+  .kpi{border-right:0;border-bottom:1px solid var(--line)}
+  .kpi:last-child{border-bottom:0}
+  .find{grid-template-columns:minmax(0,1fr)}
+  .find dt{border-bottom:0;padding-bottom:0}
+}
+</style>
+
+<div class="wrap">
+  <div class="bar">
+    <span class="mono">Mysuru, India · Open to roles</span>
+    <nav class="mono" aria-label="Sections">
+      <a href="#work">Work</a><a href="#experience">Experience</a><a href="#builds">Projects</a><a href="#skills">Skills</a>
+    </nav>
+  </div>
+
+  <header class="hero">
+    <h1>Gourav<br><span>Rajhans</span></h1>
+    <p class="role">Business analysis · Operations · Supply chain</p>
+    <p class="lede">Mechanical engineer from MANIT Bhopal. I spent a year in brewery packaging at AB InBev, first as a Supply Excellence Trainee and then as an Assistant Manager running shifts on the RGB, can and keg lines. Most of my work was figuring out why the line stopped and making that data usable. I'm looking for analyst roles in operations, supply chain or consulting.</p>
+    <div class="cta">
+      <button class="btn" id="copy" type="button">Copy email</button>
+      <span id="email">kbgaurav004@gmail.com</span>
+    </div>
+  </header>
+
+  <div class="kpis" aria-label="Key numbers">
+    <div class="kpi"><b>130k+ hl</b><p>Packaged every month, Mar–Sep 2026</p></div>
+    <div class="kpi"><b>10 → 30+</b><p>Monthly 5-Why analyses after the downtime tracker went live</p></div>
+    <div class="kpi"><b>0 → 60k</b><p>Followers grown organically on a social page in 9 months</p></div>
+  </div>
+
+  <div class="line-box" style="margin-top:28px">
+    <div class="line-head">
+      <span class="mono">RGB line · tap a machine to stop it</span>
+      <span class="mono" id="state" aria-live="polite">Running</span>
+    </div>
+    <canvas id="belt" role="img" aria-label="Animated bottling line. Tap a machine to stop it and watch bottles queue up behind it."></canvas>
+  </div>
+
+  <section id="work">
+    <div class="sec-h"><h2>Work</h2><span class="mono">AB InBev</span></div>
+
+    <article class="entry">
+      <div class="code"><em>RGB line</em>Trainee project<br>2025</div>
+      <div>
+        <h3>RGB line balance study</h3>
+        <p>The line's output depends on how machine speeds, conveyor accumulation and downstream capacity interact. I audited equipment and conveyors from the wet end through to the case packer, recorded machine speeds and accumulation, and used Pareto charts to sort the recurring losses.</p>
+        <dl class="find">
+          <dt>Conveyor space</dt><dd>The dry end is meant to run with about 50% free conveyor, but the gap between labeller and case packer was too short to hold that.</dd>
+          <dt>Top sealer</dt><dd>Speed was capped by the bottom-taper carton-locking step.</dd>
+          <dt>Repeat losses</dt><dd>Crown changeovers, bottle falls and combiner jams.</dd>
+        </dl>
+        <div class="tags"><span class="tag">Process mapping</span><span class="tag">Pareto</span><span class="tag">Bottleneck analysis</span></div>
+      </div>
+    </article>
+
+    <article class="entry">
+      <div class="code"><em>RGB line</em>Downtime data<br>2026</div>
+      <div>
+        <h3>Downtime converter</h3>
+        <p>Stoppages were reported shift by shift as free-text WhatsApp messages, which made them impossible to trend. I set up a tool that turns those messages into structured rows in the downtime report: machine, duration, cause, action.</p>
+        <div class="flow"><span>WhatsApp shift message</span> → parser → <span>downtime report</span> → Pareto / 5-Why</div>
+        <div class="demo">
+          <div class="demo-grid">
+            <div class="demo-in">
+              <label class="mono" for="msg">Try it · shift message</label>
+              <textarea id="msg" spellcheck="false">10:20-10:35 labeller jam, cleared label pickup
+11:05-11:12 filler empty bottles at infeed, waited for washer
+12:40-13:10 combiner jam, removed fallen bottles
+14:02-14:09 labeller glue roller, cleaned
+15:30-15:58 case packer gripper fault, changed solenoid</textarea>
+              <button class="btn" id="run" type="button">Convert</button>
+            </div>
+            <div class="demo-out">
+              <span class="mono">Report rows</span>
+              <div class="tbl" id="rows"></div>
+              <div class="pareto" id="pareto"></div>
+            </div>
+          </div>
+        </div>
+        <p class="out">5-Why analyses went from at most 10 a month to 30+, and repeat faults started feeding maintenance and spares planning.</p>
+        <div class="tags"><span class="tag">Built with AI tools</span><span class="tag">Excel</span><span class="tag">Root-cause analysis</span></div>
+      </div>
+    </article>
+
+    <article class="entry">
+      <div class="code"><em>Brewery</em>Handover<br>2026</div>
+      <div>
+        <h3>Shift performance dashboard</h3>
+        <p>A live, shift-wise KPI view for filtration, brewhouse and cellar, built as a handover deliverable. There was no Power BI Pro and no server to host anything, so it runs as a self-contained page inside Microsoft 365.</p>
+        <div class="tags"><span class="tag">KPI design</span><span class="tag">Microsoft 365</span></div>
+      </div>
+    </article>
+
+    <article class="entry">
+      <div class="code"><em>Packaging</em>Materials</div>
+      <div>
+        <h3>Spares tracker and SAP reconciliation</h3>
+        <p>Built an offline master list of RGB line spares so the team could check stock against each machine. Separately, reconciled packaging material consumption in SAP across multiple SKUs (movement types 101/102/261/262) and traced orphan consumption.</p>
+        <div class="tags"><span class="tag">SAP</span><span class="tag">Inventory</span></div>
+      </div>
+    </article>
+  </section>
+
+  <section id="experience">
+    <div class="sec-h"><h2>Experience</h2></div>
+    <article class="entry">
+      <div class="code"><em>Dec 2025 – Sep 2026</em>AB InBev India</div>
+      <div>
+        <h3>Assistant Manager, Packaging</h3>
+        <ul>
+          <li>Ran shifts across the RGB, can and keg lines, owning output, downtime and handovers.</li>
+          <li>Worked through filler, labeller, conveyor and material-availability stoppages with maintenance, quality and stores.</li>
+          <li>Handled the logistics pillar from the packaging side and tracked material-related delays.</li>
+        </ul>
+      </div>
+    </article>
+    <article class="entry">
+      <div class="code"><em>Jul – Nov 2025</em>AB InBev India</div>
+      <div>
+        <h3>Supply Excellence Trainee</h3>
+        <ul>
+          <li>Ran the RGB line balance study above.</li>
+          <li>Worked with process maps, KPI mapping and packaging-material loss records.</li>
+          <li>Learned SAP and covered shifts.</li>
+        </ul>
+      </div>
+    </article>
+  </section>
+
+  <section id="builds">
+    <div class="sec-h"><h2>Projects</h2><span class="mono">outside work</span></div>
+    <div class="chips" role="group" aria-label="Filter projects">
+      <button class="chip" type="button" data-f="all" aria-pressed="true">All</button>
+      <button class="chip" type="button" data-f="prog" aria-pressed="false">In progress</button>
+      <button class="chip" type="button" data-f="built" aria-pressed="false">Built</button>
+      <button class="chip" type="button" data-f="learn" aria-pressed="false">Learning</button>
+    </div>
+    <div class="builds">
+      <div class="build" data-k="prog"><div class="status">In progress</div><h3>Kaapi Counter</h3><p>QR table ordering for cafes, with a review prompt on the same link after the bill. Talking to cafes in Mysuru.</p></div>
+      <div class="build" data-k="prog"><div class="status">In progress</div><h3>Platebook</h3><p>A food diary for logging cafe visits and rating individual dishes. Firebase.</p></div>
+      <div class="build" data-k="built"><div class="status">Built</div><h3>Manga panel translator</h3><p>Translates comic panels using a vision model.</p></div>
+      <div class="build" data-k="learn"><div class="status">Learning project</div><h3>ShareStream</h3><p>File-sharing app on the MERN stack.</p></div>
+      <div class="build" data-k="learn"><div class="status">Learning project</div><h3>Real-time bus tracker</h3><p>Live bus positions on a map.</p></div>
+      <div class="build" data-k="learn"><div class="status">Learning project</div><h3>URL shortener, article summarizer</h3><p>Small full-stack and frontend builds.</p></div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="sec-h"><h2>Skills</h2></div>
+    <div class="skills">
+      <div><h4>Analysis</h4><ul><li>Root-cause and 5-Why</li><li>Pareto and bottleneck analysis</li><li>Process and KPI mapping</li><li>Line balancing</li></ul></div>
+      <div><h4>Tools</h4><ul><li>Excel</li><li>SAP (MM)</li><li>SQL, Python</li><li>React, Node, Firebase</li></ul></div>
+      <div><h4>Shop floor</h4><ul><li>Krones fillers, labellers, case packers</li><li>Sensors and pneumatics</li><li>CIP</li><li>SOPs and SDCA routines</li></ul></div>
+      <div><h4>Education</h4><ul><li>B.Tech, Mechanical Engineering</li><li>MANIT Bhopal, 2021–2025</li><li>CGPA 7.76</li></ul></div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="mono">Gourav Rajhans · kbgaurav004@gmail.com</span>
+    <span class="mono">Bengaluru · Delhi NCR · Mumbai · Pune · Hyderabad · Remote</span>
+  </footer>
+</div>
+
+<script>
+document.getElementById('copy').addEventListener('click',function(){
+  var b=this,el=document.getElementById('email');
+  function sel(){var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Selected';}
+  try{navigator.clipboard.writeText(el.textContent).then(function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy email'},1800)},sel)}catch(e){sel()}
+});
+
+/* ---------- project filter ---------- */
+document.querySelectorAll('.chip').forEach(function(c){
+  c.addEventListener('click',function(){
+    var f=c.dataset.f;
+    document.querySelectorAll('.chip').forEach(function(x){x.setAttribute('aria-pressed',x===c?'true':'false')});
+    document.querySelectorAll('.build').forEach(function(b){b.hidden=!(f==='all'||b.dataset.k===f)});
+  });
+});
+
+/* ---------- downtime converter demo ---------- */
+(function(){
+  var MACHINES=['case packer','check weigher','top sealer','pasteuriser','pasteurizer','labeller','labeler','combiner','crowner','washer','filler','conveyor','unpacker','packer'];
+  function esc(t){return t.replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  function cap(t){return t.charAt(0).toUpperCase()+t.slice(1)}
+  function mins(a,b){var x=a.split(/[:.]/),y=b.split(/[:.]/);var d=(+y[0]*60+ +y[1])-(+x[0]*60+ +x[1]);return d<0?d+1440:d}
+  function parse(text){
+    var out=[];
+    text.split(/\n+/).forEach(function(line){
+      line=line.trim(); if(!line) return;
+      var m=line.match(/(\d{1,2}[:.]\d{2})\s*(?:-|–|to)\s*(\d{1,2}[:.]\d{2})/i);
+      var dur=null,from='',to='',rest=line;
+      if(m){from=m[1].replace('.',':');to=m[2].replace('.',':');dur=mins(from,to);rest=line.replace(m[0],'')}
+      else{var d=line.match(/(\d+)\s*(?:min|mins|minutes|m)\b/i);if(d){dur=+d[1];rest=line.replace(d[0],'')}}
+      var low=rest.toLowerCase(),mach='Other';
+      for(var i=0;i<MACHINES.length;i++){if(low.indexOf(MACHINES[i])>-1){mach=MACHINES[i];break}}
+      if(mach==='labeler')mach='labeller'; if(mach==='pasteurizer')mach='pasteuriser';
+      var parts=rest.replace(/^[\s\-:|,]+/,'').split(/[,;|]/);
+      var cause=(parts[0]||'').replace(new RegExp(mach,'i'),'').trim();
+      var action=parts.slice(1).join(', ').trim();
+      if(dur===null) return;
+      out.push({from:from,to:to,dur:dur,mach:mach==='Other'?'Other':cap(mach),cause:cause?cap(cause):'—',action:action?cap(action):'—'});
+    });
+    return out;
+  }
+  function render(){
+    var rows=parse(document.getElementById('msg').value);
+    var R=document.getElementById('rows'),P=document.getElementById('pareto');
+    if(!rows.length){R.innerHTML='<p class="empty">No stoppages found. Each line needs a time range like 10:20-10:35 or a duration like 15 min.</p>';P.innerHTML='';return}
+    var h='<table><thead><tr><th>Time</th><th>Min</th><th>Machine</th><th>Cause</th><th>Action</th></tr></thead><tbody>';
+    rows.forEach(function(r){h+='<tr><td class="n">'+esc(r.from?r.from+'–'+r.to:'—')+'</td><td class="n">'+r.dur+'</td><td>'+esc(r.mach)+'</td><td>'+esc(r.cause)+'</td><td>'+esc(r.action)+'</td></tr>'});
+    R.innerHTML=h+'</tbody></table>';
+    var tot={},sum=0;rows.forEach(function(r){tot[r.mach]=(tot[r.mach]||0)+r.dur;sum+=r.dur});
+    var arr=Object.keys(tot).map(function(k){return[k,tot[k]]}).sort(function(a,b){return b[1]-a[1]});
+    var max=arr[0][1];
+    P.innerHTML='<span class="mono">Pareto · '+sum+' min total</span>'+arr.map(function(a){
+      return '<div class="pbar"><span>'+esc(a[0])+'</span><i style="width:'+(a[1]/max*100)+'%"></i><span>'+a[1]+'m</span></div>'}).join('');
+  }
+  document.getElementById('run').addEventListener('click',render);
+  render();
+})();
+
+/* ---------- conveyor ---------- */
+(function(){
+  var cv=document.getElementById('belt'),ctx=cv.getContext('2d'),st=document.getElementById('state');
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var names=['Filler','Labeller','Case packer'],stations=[],W=0,H=150,dpr=1,col={};
+  var bottles=[],SP=16,speed=60,downSec=0,last=0,frame=0;
+  function colors(){var cs=getComputedStyle(document.documentElement);['--fg','--muted','--line','--amber','--bg','--panel'].forEach(function(k){col[k]=cs.getPropertyValue(k).trim()})}
+  function size(){
+    dpr=window.devicePixelRatio||1;W=cv.clientWidth;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);
+    var jam=stations.map(function(s){return s.jam});
+    stations=names.map(function(n,i){return{name:n,x:W*(0.22+i*0.28),jam:!!jam[i]}});
+    if(!bottles.length){for(var x=W-10;x>-SP;x-=SP)bottles.push(x)}
+  }
+  function step(dt){
+    var pre=null;
+    for(var i=0;i<bottles.length;i++){ // bottles sorted by x descending
+      var x=bottles[i],lim=x+speed*dt;
+      if(pre!==null)lim=Math.min(lim,pre-SP);
+      stations.forEach(function(s){if(s.jam&&x<=s.x-12)lim=Math.min(lim,s.x-12)});
+      bottles[i]=Math.max(x,lim);pre=bottles[i];
+    }
+    bottles=bottles.filter(function(x){return x<W+10});
+    var lastX=bottles.length?bottles[bottles.length-1]:W;
+    if(lastX>-SP+SP)bottles.push(Math.min(lastX-SP,-4));
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    var by=96;
+    ctx.fillStyle=col['--line'];ctx.fillRect(0,by+12,W,4);
+    for(var t=(performance.now()/20)%18;t<W;t+=18){ctx.fillRect(t,by+18,8,2)}
+    bottles.forEach(function(x){
+      ctx.fillStyle=col['--amber'];
+      ctx.fillRect(x-4,by-14,8,26);ctx.fillRect(x-2,by-22,4,8);
+    });
+    ctx.font='11px "JetBrains Mono", monospace';ctx.textAlign='center';
+    stations.forEach(function(s){
+      ctx.fillStyle=col['--panel'];ctx.strokeStyle=s.jam?col['--amber']:col['--muted'];ctx.lineWidth=s.jam?2:1;
+      ctx.fillRect(s.x-34,by-56,68,40);ctx.strokeRect(s.x-34,by-56,68,40);
+      ctx.fillStyle=s.jam?col['--amber']:col['--fg'];
+      ctx.fillText(s.name.toUpperCase(),s.x,by-70);
+      ctx.fillText(s.jam?'STOPPED':'RUN',s.x,by-31);
+    });
+  }
+  function status(){
+    var j=stations.filter(function(s){return s.jam});
+    if(!j.length){st.textContent='Running';st.className='mono';return}
+    var q=0;j.forEach(function(s){bottles.forEach(function(x){if(x<s.x&&x>s.x-200)q++})});
+    var m=Math.floor(downSec/60),sec=Math.floor(downSec%60);
+    st.textContent=j.map(function(s){return s.name}).join(' + ')+' down · '+String(m).padStart(2,'0')+':'+String(sec).padStart(2,'0');
+    st.className='mono down';
+  }
+  function loop(ts){
+    var dt=last?Math.min((ts-last)/1000,0.05):0;last=ts;
+    if(frame++%30===0)colors();
+    step(dt);
+    if(stations.some(function(s){return s.jam}))downSec+=dt;
+    draw();if(frame%10===0)status();
+    requestAnimationFrame(loop);
+  }
+  cv.addEventListener('click',function(e){
+    var r=cv.getBoundingClientRect(),x=e.clientX-r.left,best=null,d=1e9;
+    stations.forEach(function(s){var dd=Math.abs(s.x-x);if(dd<d){d=dd;best=s}});
+    if(best&&d<W*0.14){best.jam=!best.jam;if(!stations.some(function(s){return s.jam}))downSec=0;status();if(reduce)draw()}
+  });
+  colors();size();
+  addEventListener('resize',function(){size();draw()});
+  if(reduce){draw()}else{requestAnimationFrame(loop)}
+})();
+</script>
+
+</body></html>
